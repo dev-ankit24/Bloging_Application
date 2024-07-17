@@ -1,9 +1,17 @@
 import './App.css'
+import conf from './conf/conf';
 function App() {
-  console.log(import.meta.env.VITE_APPWRITE_URL );
+  console.log(conf.appwriteBucketId);
+  console.log(conf.appwriteCollectionId);
+  console.log(conf.appwriteDatabaseId);
+  console.log(conf.appwriteProjectId);
   return (
     <>
     <h1>hello</h1>
+    <h3>{
+  conf.appwriteUrl
+      
+      }</h3>
        
     </>
   )
