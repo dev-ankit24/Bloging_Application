@@ -68,22 +68,31 @@ export class Service{
     }
 
     //  get One (single )   Post 
-    async getSinglePost(slug ,{title,content, featuredImage, status}){
+    async getSinglePost(slug){
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
-                {
-                    title,
-                    content, 
-                    featuredImage,
-                    status
-                }
+                slug
             )  
         } catch (error) {
-            console.log("Appwrite  Database service:: delete Post",error);
+            console.log("Appwrite  Database service:: GET single  Post",error);
         }
+    }
+
+    // List of Post (all post)
+    async getAllPosts(queries=[Query.equal("status","active")]){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                queries
+            )
+        } catch (error) {
+            console.log("Appwrite  Database service:: GET ALL Posts",error);
+            return false
+        }
+
     }
 }
 
